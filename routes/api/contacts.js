@@ -23,23 +23,24 @@ router.get('/', async (req, res, next) => {
 
 // GET/api/contacts/10
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async(req, res, next) => {
   try {
     const { id } = req.params
     const result = await contactsOperations.getContactById(id)
     if (!result) {
-      const error = new Error(`Contact with id=${id} not found`)
+      const error = new Error(`Contacts with id=${id} not found`)
       error.status = 404
       throw error
     }
     res.json({
-      status: 'saccess',
+      status: 'success',
       code: 200,
       data: {
         result
       }
     })
-  } catch (error) {
+  }
+  catch (error) {
     next(error)
   }
 })
