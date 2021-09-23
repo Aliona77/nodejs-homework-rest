@@ -1,4 +1,4 @@
-const { contactsOperations } = require('../../model')
+const { contactsModel } = require('../../model')
 const { contactSchema } = require('../../schema')
 
 const addContact = async (req, res, next) => {
@@ -9,7 +9,7 @@ const addContact = async (req, res, next) => {
       err.status = 400
       throw err
     }
-    const result = await contactsOperations.addContact(req.body)
+    const result = await contactsModel.addContact(req.body)
     res.status(201).json({
       status: 'success',
       code: 201,

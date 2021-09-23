@@ -1,4 +1,4 @@
-const { contactsOperations } = require('../../model')
+const { contactsModel } = require('../../model')
 const { contactSchema } = require('../../schema')
 
 const updateContact = async (req, res, next) => {
@@ -10,7 +10,7 @@ const updateContact = async (req, res, next) => {
       throw err
     }
     const { id } = req.params
-    const result = await contactsOperations.updateContactById(id, req.body)
+    const result = await contactsModel.updateContactById(id, req.body)
     if (!result) {
       const error = new Error(`Contact with id=${id} not found`)
       error.status = 404
