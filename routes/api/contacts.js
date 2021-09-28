@@ -17,4 +17,4 @@ router.patch('/:id/favorite', validation(updateFavoriteJoiSchema), controllerWra
 
 router.delete('/:id', controllerWrapper(ctrl.removeContact))
 
-module.exports = router
+module.exports = router;
