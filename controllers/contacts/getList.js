@@ -1,17 +1,8 @@
-const { contactsModel } = require('../../model')
+const { Contact } = require('../../models')
+const { sendSuccessRes } = require('../../helpers')
 
-const getList = async (req, res, next) => {
-  try {
-    const contacts = await contactsModel.getList()
-    res.json({
-      status: 'success',
-      code: 200,
-      data: {
-        result: contacts
-      }
-    })
-  } catch (error) {
-    next(error)
-  }
+const getList = async (req, res) => {
+  const result = await Contact.find({})
+  sendSuccessRes(res, { data: result })
 }
 module.exports = getList;
