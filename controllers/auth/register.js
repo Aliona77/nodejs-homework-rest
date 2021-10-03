@@ -7,7 +7,9 @@ const register = async (req, res) => {
   if (user) {
     throw new Conflict('Email in use')
   }
-  const result = await User.create(req.body)
+  const newUser = new User({ email })
+  newUser.setPassword(password)
+  await newUser.save()
   res.status(201).json({
     status: 'success',
     code: 201,
