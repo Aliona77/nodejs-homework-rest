@@ -14,6 +14,7 @@ const addAvatar = async (req, res) => {
     const file = await Jimp.read(tempStorage)
     await file.resize(250, 250).write(tempStorage)
     await fs.rename(tempStorage, uploadDir)
+
     const avatar = `/avatars/${id}/${originalname}`
     await User.findByIdAndUpdate(id, { avatarUrl: avatar })
     res.status(201).json({
