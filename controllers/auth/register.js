@@ -15,9 +15,9 @@ const register = async (req, res) => {
   const verifyToken = uuidv4()
   const newUser = new User({
     email,
+    verifyToken,
     subscription,
-    avatarUrl,
-    verifyToken
+    avatarUrl
   })
   newUser.setPassword(password)
   await newUser.save()
@@ -26,7 +26,7 @@ const register = async (req, res) => {
     to: email,
     subject: 'Подтверждение регистрации на сайте',
     html: `
-        <a href= 'http:localhost:3000/api/auth/verify/${verifyToken}' target = '_blank'> Подтвердить почту</a>
+        <a href='http://localhost:3000/api/auth/verify/${verifyToken}' target = '_blank'> Подтвердить почту</a>
     `
 
   }
@@ -36,13 +36,13 @@ const register = async (req, res) => {
     user: {
       email: newUser.email,
       subscription: newUser.subscription,
+      data: {
+        verifyToken
+      },
     },
     status: 'success',
     code: 201,
     message: 'Success register',
-    data: {
-      verifyToken
-    }
   })
 }
 
