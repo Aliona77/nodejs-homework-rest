@@ -1,14 +1,25 @@
-const sgMail = require('@sendgrid/mail')
+// const nodemailer = require('nodemailer')
 
-const { SENDGRID_KEY } = process.env
+// const { EMAIL_PASSWORD } = process.env
 
-sgMail.setApiKey(SENDGRID_KEY)
+// const nodemailerConfig = {
+//   host: 'smtp.meta.ua',
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: 'alionachaban@meta.ua',
+//     pass: EMAIL_PASSWORD
+//   }
+// }
 
-const sendEmail = async (data) => {
-  const email = {
-    ...data,
-    from: 'chaban_az14@nuwm.edu.ua'
-  }
-  await sgMail.send(email)
-}
-module.exports = sendEmail;
+// const transporter = nodemailer.createTransport(nodemailerConfig)
+
+// const sendEmail = async (data) => {
+//   const email = {
+//     ...data,
+//     from: 'alionachaband@meta.ua',
+//   }
+//   await transporter.sendMail(email)
+// }
+// module.exports = sendEmail
+

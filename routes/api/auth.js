@@ -7,7 +7,7 @@ const { auth: ctrl } = require('../../controllers')
 
 router.post('/register', validation(joiUserSchema), controllerWrapper(ctrl.register))
 
-router.get('/verify/:verifyToken, controllerWrapper(ctrl.verify)')
+router.get('/verify/:verifyToken', controllerWrapper(ctrl.verify))
 
 router.post('/login', validation(joiUserSchema), controllerWrapper(ctrl.login))
 
