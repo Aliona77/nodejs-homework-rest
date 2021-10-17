@@ -9,6 +9,8 @@ router.post('/register', validation(joiUserSchema), controllerWrapper(ctrl.regis
 
 router.get('/verify/:verifyToken', controllerWrapper(ctrl.verify))
 
+router.get('/verify', controllerWrapper(ctrl.resendEmail))
+
 router.post('/login', validation(joiUserSchema), controllerWrapper(ctrl.login))
 
 router.get('/logout', authenticate, controllerWrapper(ctrl.logout))

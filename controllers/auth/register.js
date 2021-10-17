@@ -24,7 +24,7 @@ const register = async (req, res) => {
 
   sgMail.setApiKey(process.env.SENDGRID_KEY)
 
-  const emailData = {
+  const msg = {
     to: newUser.email,
     from: 'chaban_az14@nuwm.edu.ua',
     subject: 'Подтверждение регистрации на сайте',
@@ -33,7 +33,7 @@ const register = async (req, res) => {
     `
   }
   sgMail
-    .send(emailData)
+    .send(msg)
     .then(() => {
       console.log('Email sent')
     })
