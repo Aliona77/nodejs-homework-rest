@@ -4,9 +4,12 @@ const { User } = require('../../models')
 
 const login = async (req, res) => {
   const { email, password } = req.body
-  const user = await User.findOne({ email }, '_id email password')
+  const user = await User.findOne({ email }, '_id email password, verify')
   if (!user || !user.comparePassword(password)) {
     throw new BadRequest('Invalid email or password')
+  }
+  if (!user.verify) {
+    throw new BadRequest('Email not verify')
   }
 
   const { _id } = user
@@ -16,6 +19,7 @@ const login = async (req, res) => {
   const { SECRET_KEY } = process.env
 
   const token = jwt.sign(payload, SECRET_KEY)
+
   await User.findByIdAndUpdate(_id, { token })
   res.json({
     status: 'success',
